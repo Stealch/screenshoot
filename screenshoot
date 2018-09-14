@@ -1,0 +1,12 @@
+#!/bin/bash
+#usage name_script delay_second
+if [ $1 ]; then
+sleep $1 #Set delay
+fi
+DT=' +screenshoot_%d%m%y_%H%M%S'; #Set date and time for filename
+FILE_NAME=`date $DT`;
+IMG_FORMAT="jpg"; #png, jpg, bmp, gif, tiff
+xwd -screen -root > $HOME/$FILE_NAME.xwd;
+convert $HOME/$FILE_NAME.xwd -type TrueColor $HOME/$FILE_NAME.$IMG_FORMAT;
+rm $HOME/$FILE_NAME.xwd;
+echo "Скриншот сохранен: "$HOME/$FILE_NAME.$IMG_FORMAT;
